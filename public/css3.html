@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <title>HTML5&amp;CSS3講座 CSS3編</title>
+</head>
+
+<body>
+<header class="header">
+  <h1 class="header-title">CSS3はこんなこともできる！！</h1>
+</header>
+
+<div class="contents">
+  <h2 class="title">border-radius</h2>
+  
+  <div class="contents-item-wrap">
+    <div class="contents-radius contents-item">
+      <p class="contents-radius-item base-item"></p>
+      <p class="contents-radius-des base-des">border-radius: 50%</p>
+    </div>
+
+    <div class="contents-radius contents-item">
+      <p class="contents-radius-item base-item"></p>
+      <p class="contents-radius-des base-des">border-bottom-left-radius: 20px;</p>
+    </div>
+
+    <div class="contents-radius contents-item">
+      <p class="contents-radius-item base-item"></p>
+      <p class="contents-radius-des base-des">border-bottom-right-radius: 20px;</p>
+    </div>
+
+    <div class="contents-radius contents-item">
+      <p class="contents-radius-item base-item"></p>
+      <p class="contents-radius-des base-des">border-top-left-radius: 20px;</p>
+    </div>
+
+    <div class="contents-radius contents-item">
+      <p class="contents-radius-item base-item"></p>
+      <p class="contents-radius-des base-des">border-top-right-radius: 20px;</p>
+    </div>
+  </div>
+
+  <h2 class="title">box-shadow</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-boxShadow contents-item">
+      <p class="contents-boxShadow-item base-item"></p>
+      <p class="contents-boxShadow-des base-des">
+        box-shadow: 横 縦 広がり 色<br>
+        box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">text-shadow</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-textShadow contents-item">
+      <p class="contents-textShadow-des base-des">
+        text-shadow: 横 縦 広がり 色<br>
+        text-shadow: 1px 1px 2px rgba(0,0,0,1);
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">opacity</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-opacity contents-item">
+      <p class="contents-opacity-item base-item"></p>
+      <p class="contents-opacity-des base-des">
+        opacity: 1がmax、0が透明<br>
+        opacity: .7;
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">rgba</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-rgba contents-item">
+      <p class="contents-rgba-item base-item"></p>
+      <p class="contents-rgba-des base-des">
+        rgba(r,g,b,a,透明度)<br>
+        background-color: rgba(0,0,0,.3);
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">skew</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-skew contents-item">
+      <p class="contents-skew-item base-item"></p>
+      <p class="contents-skew-des base-des">
+        skew(x,y)<br>
+        transform: skew(20deg,10deg);
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">scale</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-scale contents-item">
+      <p class="contents-scale-item base-item"></p>
+      <p class="contents-scale-des base-des">
+        scale(x,y,z)<br>
+        transform: scale(1.5,1.2);
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">translate</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-translate contents-item">
+      <p class="contents-translate-item base-item"></p>
+      <p class="contents-translate-des base-des">
+        translate(x,y,z)<br>
+        transform: translate(40px,-20px);
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">rotate</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-rotate contents-item">
+      <p class="contents-rotate-item base-item"></p>
+      <p class="contents-rotate-des base-des">
+        rotate(x,y,z)<br>
+        transform: rotate(20deg);
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">transition</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-transition contents-item">
+      <p class="contents-transition-item base-item"></p>
+      <p class="contents-transition-des base-des">
+        transition: 時間 動かすもの 遅延<br>
+        transition: .3s all;
+      </p>
+    </div>
+    <div class="contents-transition contents-item">
+      <p class="contents-transition-item base-item"></p>
+      <p class="contents-transition-des base-des">
+        transition: 時間 動かすもの 遅延<br>
+        transition: .3s all 1s;
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">animation</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-animation contents-item">
+      <p class="contents-animation-item base-item"></p>
+      <p class="contents-animation-des base-des">
+        animation: 名前 時間 遅延 ループ イージング<br>
+        animation: sample 2s infinite linear;<br><br>
+        @keyframes sample{<br>
+        &nbsp;&nbsp;0%,100% {transform: translateX(0);}<br>
+      &nbsp;&nbsp;50% {transform: translateX(200px);}<br>
+      }
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">box-sizing</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-boxSizing contents-item">
+      <p class="contents-boxSizing-item base-item"></p>
+      <p class="contents-boxSizing-des base-des">
+        box-sizing: border-box;<br>
+        padding: 0 40px;
+      </p>
+    </div>
+  </div>
+
+  <h2 class="title">mediaquery</h2>
+  <div class="contents-item-wrap">
+    <div class="contents-boxSizing contents-item">
+      <p class="contents-boxSizing-item base-item"></p>
+      <p class="contents-boxSizing-des base-des">
+        box-sizing: border-box;<br>
+        padding: 0 40px;
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<script src="//code.jquery.com/jquery-latest.js"></script>
+<script>
+
+</script>
+</body>
+</html>

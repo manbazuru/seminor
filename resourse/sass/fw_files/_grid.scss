@@ -1,0 +1,236 @@
+@charset "utf-8";
+
+
+
+// サンプル用スタイル　消すヤツ ここから
+// body,p{
+//   margin: 0;
+//   padding: 0;
+// }
+// div:not(.sbgrid){
+//   height: 70px;
+//   background-color: skyblue;
+// }
+// .sbgrid{
+//   margin-top: 24px !important;
+// }
+// サンプル用スタイル　消すヤツ ここまで
+
+
+
+
+// ブレークポイントごとのクラス名を変数に格納
+$pcNames  : pc-1,pc-2,pc-3,pc-4,pc-5,pc-6,pc-7,pc-8,pc-9,pc-10,pc-11,pc-12,pc-5-1,pc-5-2,pc-5-3,pc-5-4,pc-5-5;
+$tabNames : tab-1,tab-2,tab-3,tab-4,tab-5,tab-6,tab-7,tab-8,tab-9,tab-10,tab-11,tab-12,tab-5-1,tab-5-2,tab-5-3,tab-5-4,tab-5-5;
+$spNames  : sp-1,sp-2,sp-3,sp-4,sp-5,sp-6,sp-7,sp-8,sp-9,sp-10,sp-11,sp-12,sp-5-1,sp-5-2,sp-5-3,sp-5-4,sp-5-5;
+
+
+// $baseGutterの値を半分にして左右マージンにする
+$baseMargin    : $baseGutter / 2; //PC用
+$baseTabMargin : $baseTabGutter / 2; //タブレット用
+$baseSpMargin  : $baseSpGutter / 2; // スマホ用
+
+
+// @for $i from 1 through 12{
+//   $m#{$i}: #{$baseGutter} * #{$i};
+// }
+
+// 余白の数を変数に格納
+// PC用
+$m1  : $baseGutter * 1;
+$m2  : $baseGutter * 2;
+$m3  : $baseGutter * 3;
+$m4  : $baseGutter * 4;
+$m5  : $baseGutter * 5;
+$m6  : $baseGutter * 6;
+$m7  : $baseGutter * 7;
+$m8  : $baseGutter * 8;
+$m9  : $baseGutter * 9;
+$m10 : $baseGutter * 10;
+$m11 : $baseGutter * 11;
+$m12 : $baseGutter * 12;
+// タブレット用
+$mTab1  : $baseTabGutter * 1;
+$mTab2  : $baseTabGutter * 2;
+$mTab3  : $baseTabGutter * 3;
+$mTab4  : $baseTabGutter * 4;
+$mTab5  : $baseTabGutter * 5;
+$mTab6  : $baseTabGutter * 6;
+$mTab7  : $baseTabGutter * 7;
+$mTab8  : $baseTabGutter * 8;
+$mTab9  : $baseTabGutter * 9;
+$mTab10 : $baseTabGutter * 10;
+$mTab11 : $baseTabGutter * 11;
+$mTab12 : $baseTabGutter * 12;
+// スマホ用
+$mSp1  : $baseSpGutter * 1;
+$mSp2  : $baseSpGutter * 2;
+$mSp3  : $baseSpGutter * 3;
+$mSp4  : $baseSpGutter * 4;
+$mSp5  : $baseSpGutter * 5;
+$mSp6  : $baseSpGutter * 6;
+$mSp7  : $baseSpGutter * 7;
+$mSp8  : $baseSpGutter * 8;
+$mSp9  : $baseSpGutter * 9;
+$mSp10 : $baseSpGutter * 10;
+$mSp11 : $baseSpGutter * 11;
+$mSp12 : $baseSpGutter * 12;
+
+
+//各カラムのwidth 1〜12 , 5-1〜5-5
+//(PCは最初と最後のマージン無し、タブレット・スマホは全カラム左右マージンを付けて計算)
+// PC用
+$gridPcWidth : 
+  calc((100% - #{$m11}px) / 12),
+  calc((100% - #{$m5}px) / 6),
+  calc((100% - #{$m3}px) / 4),
+  calc((100% - #{$m2}px) / 3),
+  calc((100% - #{$m11}px) / 12 * 5 + #{$m4}px),
+  calc((100% - #{$m1}px) / 2),
+  calc((100% - #{$m11}px) / 12 * 7 + #{$m6}px),
+  calc((100% - #{$m11}px) / 12 * 8 + #{$m7}px),
+  calc((100% - #{$m11}px) / 12 * 9 + #{$m8}px),
+  calc((100% - #{$m11}px) / 12 * 10 + #{$m9}px),
+  calc((100% - #{$m11}px) / 12 * 11 + #{$m10}px),
+  100%,
+
+  calc((100% - #{$m4}px) / 5),
+  calc((100% - #{$m4}px) / 5 * 2 + #{$m1}px),
+  calc((100% - #{$m4}px) / 5 * 3 + #{$m2}px),
+  calc((100% - #{$m4}px) / 5 * 4 + #{$m3}px),
+  calc((100% - #{$m4}px) / 5 * 5 + #{$m4}px);
+
+// タブレット用
+$gridTabWidth : 
+  calc((100% - #{$mTab12}px) / 12),
+  calc((100% - #{$mTab6}px) / 6),
+  calc((100% - #{$mTab4}px) / 4),
+  calc((100% - #{$mTab3}px) / 3),
+  calc((100% - #{$mTab12}px) / 12 * 5 + #{$mTab4}px),
+  calc((100% - #{$mTab2}px) / 2),
+  calc((100% - #{$mTab12}px) / 12 * 7 + #{$mTab6}px),
+  calc((100% - #{$mTab12}px) / 12 * 8 + #{$mTab7}px),
+  calc((100% - #{$mTab12}px) / 12 * 9 + #{$mTab8}px),
+  calc((100% - #{$mTab12}px) / 12 * 10 + #{$mTab9}px),
+  calc((100% - #{$mTab12}px) / 12 * 11 + #{$mTab10}px),
+  calc(100% - #{$mTab1}px),
+
+  calc((100% - #{$mTab5}px) / 5),
+  calc((100% - #{$mTab5}px) / 5 * 2 + #{$mTab1}px),
+  calc((100% - #{$mTab5}px) / 5 * 3 + #{$mTab2}px),
+  calc((100% - #{$mTab5}px) / 5 * 4 + #{$mTab3}px),
+  calc((100% - #{$mTab5}px) / 5 * 5 + #{$mTab4}px);
+
+// スマホ用
+$gridSpWidth : 
+  calc((100% - #{$mSp12}px) / 12),
+  calc((100% - #{$mSp6}px) / 6),
+  calc((100% - #{$mSp4}px) / 4),
+  calc((100% - #{$mSp3}px) / 3),
+  calc((100% - #{$mSp12}px) / 12 * 5 + #{$mSp4}px),
+  calc((100% - #{$mSp2}px) / 2),
+  calc((100% - #{$mSp12}px) / 12 * 7 + #{$mSp6}px),
+  calc((100% - #{$mSp12}px) / 12 * 8 + #{$mSp7}px),
+  calc((100% - #{$mSp12}px) / 12 * 9 + #{$mSp8}px),
+  calc((100% - #{$mSp12}px) / 12 * 10 + #{$mSp9}px),
+  calc((100% - #{$mSp12}px) / 12 * 11 + #{$mSp10}px),
+  calc(100% - #{$mSp1}px),
+
+  calc((100% - #{$mSp5}px) / 5),
+  calc((100% - #{$mSp5}px) / 5 * 2 + #{$mSp1}px),
+  calc((100% - #{$mSp5}px) / 5 * 3 + #{$mSp2}px),
+  calc((100% - #{$mSp5}px) / 5 * 4 + #{$mSp3}px),
+  calc((100% - #{$mSp5}px) / 5 * 5 + #{$mSp4}px);
+
+
+// コンテナ用スタイル
+.sbgrid{
+  @include clearfix;
+  width: 100%;
+  box-sizing: border-box;
+  margin: #{$sectionMargin}px auto 0;
+
+  @include lg {
+    max-width: $widthXL;
+    // カラムのスタイル設定 extendはメディアクエリごとに必要
+    %gridLg{
+      box-sizing: border-box;
+      float: left;
+      margin-left: #{$baseMargin}px;
+      margin-right: #{$baseMargin}px;
+      &:first-of-type{
+        margin-left: 0;
+      }
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+    @each $lgName in $pcNames{
+      $index_key : index($pcNames,$lgName);
+      .#{$lgName}{
+        @extend %gridLg;
+        width: nth($gridPcWidth,$index_key);
+      }
+    }
+  }
+
+  @include md {
+    max-width: $widthLG;
+    // カラムのスタイル設定 extendはメディアクエリごとに必要
+    %gridMd{
+      box-sizing: border-box;
+      float: left;
+      margin-left: #{$baseMargin}px;
+      margin-right: #{$baseMargin}px;
+      &:first-of-type{
+        margin-left: 0;
+      }
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+    @each $mdName in $pcNames{
+      $index_key : index($pcNames,$mdName);
+      .#{$mdName}{
+        @extend %gridMd;
+        width: nth($gridPcWidth,$index_key);
+      }
+    }
+  }
+
+  @include tab {
+    max-width: $widthTab;
+    // カラムのスタイル設定 extendはメディアクエリごとに必要
+    %gridTab{
+      box-sizing: border-box;
+      float: left;
+      margin-left: #{$baseMargin}px;
+      margin-right: #{$baseMargin}px;
+    }
+    @each $tabName in $tabNames{
+      $index_key : index($tabNames,$tabName);
+      .#{$tabName}{
+        @extend %gridTab;
+        width: nth($gridTabWidth,$index_key);
+      }
+    }
+  }
+
+  @include sp {
+    max-width: $widthSp;
+    // カラムのスタイル設定 extendはメディアクエリごとに必要
+    %gridSp{
+      box-sizing: border-box;
+      float: left;
+      margin-left: #{$baseMargin}px;
+      margin-right: #{$baseMargin}px;
+    }
+    @each $spName in $spNames{
+      $index_key : index($spNames,$spName);
+      .#{$spName}{
+        @extend %gridSp;
+        width: nth($gridSpWidth,$index_key);
+      }
+    }
+  }
+}

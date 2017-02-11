@@ -1,0 +1,330 @@
+// RESET
+p,h1,h2,h3{
+  margin: 0;
+  padding: 0;
+}
+ul,li{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+// デフォルトスタイル
+body{
+  font-family: "Roboto", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+// 変数
+$baseColor : #5a5a5a;
+$linkColor : slategray;
+
+
+// スタイル
+.header{
+  width: 100%; max-width: 960px;
+  margin: 40px auto 0;
+
+  &-title{
+    color: $baseColor;
+    font-size: 24px;
+  }
+}
+
+.links{
+  width: 100%; max-width: 960px;
+  margin: 40px auto 0;
+
+  &-item{
+    display: inline-block;
+
+    > a{
+      border: 1px solid $linkColor;
+      border-radius: 3px;
+      color: $linkColor;
+      display: block;
+      padding: 16px 40px;
+      transition: .3s all;
+
+      &:hover{
+        background-color: $linkColor;
+        color: white;
+      }
+    }
+  }
+
+  &-item + &-item{
+    margin-left: 24px;
+  }
+}
+
+.title{
+  width: 100%; max-width: 960px;
+  color: $baseColor;
+  font-weight: normal;
+  margin: 80px auto 0;
+}
+
+
+
+// html5
+.canvas{
+  width: 100%; max-width: 960px;
+  height: 300px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: block;
+  margin: 24px auto 0;
+}
+
+.audio{
+  width: 100%; max-width: 960px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin: 24px auto 0;
+  padding: 40px 0;
+
+  &-heading{
+    width: 60%;
+    box-sizing: border-box;
+    color: $baseColor;
+    padding-left: 8px;
+  }
+
+  &-name{
+    width:100%;
+    margin-top: 16px;
+    position: relative;
+
+    &-item{
+      color: rgba(0,0,0,0.54);
+      cursor: pointer;
+      display: inline-block;
+      padding-left: 8px;
+      transition: .3s all;
+
+      &:hover{
+        color:$linkColor;
+      }
+
+      span{
+        opacity: 0;
+        padding-right: 8px;
+      }
+    }
+
+    &-item + &-item{
+      margin-top: 24px;
+    }
+  }
+
+  &-player{
+    height: 1.2em;
+    margin-top: 40px;
+    overflow: hidden;
+
+    > div{
+      float:left;
+
+      & + div{
+        margin-left: 24px;
+      }
+    }
+
+    .icon-play,
+    .icon-pause{
+      color: $baseColor;
+      cursor: pointer;
+      font-size: 1.2em;
+      margin-left: 16px;
+    }
+
+    .progress_bar{
+      width: 50%;
+      border-bottom: 1px solid #ccc;
+      padding-top: 0.6em;
+      position: relative;
+
+      .circle{
+        width: 0.7em;
+        height: 0.7em;
+        background-color: $baseColor;
+        border-radius:50%;
+        position: absolute;
+        top: 0.3em; left: 0;
+      }
+    }
+
+    .icon-volume-high,
+    .icon-volume-mute2{
+      color: $baseColor;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+
+    .current{
+      color: $baseColor;
+    }
+  }
+}
+
+.video{
+  width: 100%; max-width: 960px;
+  margin: 24px auto 0;
+
+  video{
+    width: 100%;
+  }
+}
+
+
+// CSS3
+.base-item{
+  width: 100px;
+  height: 100px;
+  background-color: $baseColor;
+  margin: 0 auto;
+}
+
+.base-des{
+  width: 80%;
+  color: $baseColor;
+  margin: 16px auto 0;
+  text-align: center;
+}
+
+.contents{
+  width: 100%; max-width: 960px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+
+  &-item-wrap{
+    @include clearfix;
+  }
+
+  &-item{
+    width: 33%;
+    float: left;
+    margin-top: 32px;
+  }
+
+  &-radius{
+    &:first-child &-item{
+      border-radius: 50%;
+    }
+    &:nth-child(2) &-item{
+      border-bottom-left-radius: 20px;
+    }
+    &:nth-child(3) &-item{
+      border-bottom-right-radius: 20px;
+    }
+    &:nth-child(4) &-item{
+      border-top-left-radius: 20px;
+    }
+    &:last-child &-item{
+      border-top-right-radius: 20px;
+    }
+  }
+
+  &-boxShadow{
+    &-item{
+      box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+    }
+  }
+
+  &-textShadow{
+    &-des{
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0,0,0,1);
+    }
+  }
+
+  &-opacity{
+    &-item{
+      &:hover{
+        opacity: .7;
+      }
+    }
+  }
+
+  &-rgba{
+    &-item{
+      background-color: rgba(0,0,0,.3);
+    }
+  }
+
+  &-skew{
+    &-item{
+      transform: skew(20deg,10deg);
+    }
+  }
+
+  &-scale{
+    &-item{
+      transform: scale(1.5,1.2);
+    }
+  }
+
+  &-translate{
+    &-item{
+      transform: translate(40px,-20px);
+    }
+  }
+
+  &-rotate{
+    &-item{
+      transform: rotate(20deg);
+    }
+  }
+
+  &-transition{
+    &-item{
+      transition: .3s all;
+
+      &:hover{
+        background-color: $linkColor;
+      }
+    }
+
+    &:last-child &-item{
+      transition: .3s all 1s;
+
+      &:hover{
+        background-color: $linkColor;
+      }
+    }
+  }
+
+  &-animation{
+    width: 100%;
+
+    &-item{
+      animation: sample 2s infinite linear;
+      margin: 0;
+    }
+    &-des{
+      width: 100%;
+      text-align: left;
+    }
+
+    @keyframes sample{
+      0%,100% {transform: translateX(0);}
+      50% {transform: translateX(200px);}
+    }
+  }
+
+  &-boxSizing{
+    &-item{
+      box-sizing: border-box;
+      padding: 0 40px;
+    }
+  }
+}
+

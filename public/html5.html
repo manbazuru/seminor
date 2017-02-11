@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/webfont.css" rel="stylesheet">
+
+  <title>HTML5&amp;CSS3講座 HTML5編</title>
+</head>
+
+<body>
+<header class="header">
+  <h1 class="header-title">HTML5ではこんなこともできる！！</h1>
+</header>
+
+<h2 class="title">Canvas</h2>
+<canvas id="canvas" class="canvas"></canvas>
+
+<h2 class="title">Audio</h2>
+<div class="audio">
+  <p class="audio-heading">Choose the song below.</p>
+
+  <ul id="music_name" class="audio-name">
+    <li class="audio-name-item"><span class="icon-volume-high"></span>01. おまえに。</li>
+    <li class="audio-name-item"><span class="icon-volume-high"></span>02. for YOU。</li>
+    <li class="audio-name-item"><span class="icon-volume-high"></span>03. sumire。</li>
+  </ul>
+
+  <div id="music_player" class="audio-player">
+    <div class="icon-play"></div>
+    <div class="progress_bar">
+        <div class="circle"></div>
+    </div>
+    <div class="icon-volume-mute2 volume"></div>
+    <div class="current"><span class="a_now"></span><span class="a_total"></span></div>
+  </div>
+
+  <audio id="music_file" preload="auto" controls>
+      <source src="" type="audio/mp3">
+      このブラウザはAudioが未対応、もしくはmp3データの再生が未対応となっております。
+  </audio>
+</div>
+
+<h2 class="title">Video</h2>
+<div class="video">
+  <video src="video/top.mp4" autoplay loop></video>
+</div>
+
+
+<script src="//code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script>
+// canvas
+var canvas,stage;
+var wave;
+var oldX,oldY,newX,newY,curveX,curveY;
+var num = 200;
+var range = 15;
+var count;
+
+var init = function() {
+  canvas = document.getElementById('canvas');
+  stage = new createjs.Stage(canvas);
+  stage.clear();
+
+  count = 0;
+
+  wave = new createjs.Shape();
+  
+  stage.addChild(wave);
+
+  createjs.Ticker.timingMode = createjs.Ticker.RAF;
+  createjs.Ticker.addEventListener('tick',mytick);
+};
+
+function mytick() {
+  oldX = 0;
+  oldY = 0;
+
+  wave.graphics.clear()
+    .beginFill('skyblue')
+    .moveTo(0,canvas.height/ 2);
+
+  for(var i = 0; i <= num; i++) {
+    newX = i * canvas.width / num; // アンカーポイントXの数をcanvasの横幅から求め、等幅間隔に並べる
+    curveX = (oldX + newX) / 2; // 開始点と終点の中間にコントロールポイントXを置く
+
+    newY = canvas.height / 2 + range * Math.sin(calcRadian(i + count));
+    curveY = (oldY + canvas.height / 2 + newY) / 2;
+
+    wave.graphics
+      .quadraticCurveTo(curveX,curveY,newX,newY);
+
+    count += 0.015;
+    oldX = newX;
+    oldY = newY - canvas.height / 2;
+  }
+
+  wave.graphics
+     .lineTo(canvas.width,canvas.height)
+     .lineTo(0,canvas.height)
+     .closePath();
+  stage.update();
+}
+
+function calcRadian(degree) {
+  degree = degree * Math.PI / 180;
+  return degree;
+}
+
+init();
+
+
+
+
+// audio
+var musiclist = [
+  {name:"omaeni",title:"おまえに。"},
+  {name:"foryou",title:"for YOU。"},
+  {name:"sumire",title:"sumire。"}
+];
+
+var 
+  $mFile       = $("#music_file"),
+  $play        = $(".icon-play"),
+  $mute        = $(".volume"),
+  $bar         = $(".progress_bar"),
+  $circle      = $(".circle"),
+  $currentText = $(".current")
+;
+
+var target = document.getElementById('music_file');
+//controls非表示
+target.removeAttribute('controls');
+  
+var changeIcon = function(name){
+  $this.attr("class","icon-"+name);
+};
+
+var now = 0;
+
+$play.click(play);//plyaアイコン、pauseアイコン
+
+function play(){
+  $this = $(this);
+  if(now === 0){
+    $mFile.get(0).play();
+    now++;
+    changeIcon("pause");
+  }else{
+    $mFile.get(0).pause();
+    now = 0;
+    changeIcon("play");
+  }
+}
+
+$mute.click(mute);//muteアイコン
+
+function mute(){
+  $this = $(this);
+
+  if($mFile.get(0).muted) {
+    $mFile.get(0).muted = false;
+    $this.css("opacity",1);
+    changeIcon("volume-mute2");
+  } else {
+    $mFile.get(0).muted = true;
+    $this.css("opacity",0.5);
+    changeIcon("volume-high");
+  }
+}
+
+//曲名をクリックで再生、アイコン付与
+$("#music_name li").click(name);
+
+function name() {
+  $this = $(this);
+  var i = $this.index();
+  
+  $("#music_name li").css("color","rgba(0,0,0,0.54);");
+
+  //選択アイコン表示、その他非表示
+  $("#music_name li span").css({
+    "opacity":0,
+    "-webkit-transition":"0.3s",
+    "transition":"0.3s"
+  });
+
+  $this.css("color","#5a5a5a");
+
+  $this.children("span").css({
+    "opacity":1,
+    "-webkit-transition":"0.5s",
+    "transition":"0.5s"
+  });
+
+  //ファイル取得、再生
+  $mFile.attr("src", "./mp3/" + musiclist[i].name + ".mp3");
+  $mFile.get(0).play();
+  $play.attr("class","icon-pause");
+  now++;
+
+  //リアルタイムイベント
+  target.addEventListener("timeupdate",bar_time,true);
+  function bar_time(){
+    var total = Math.round(target.duration);
+    var now = Math.round(target.currentTime);
+    var pos = (now / total * 100) + '%';
+    $circle.css("left",pos);//Circleを動かす
+
+    var tmin = "0" + Math.floor(target.duration / 60);//トータル分数
+    var tsec = Math.floor(target.duration % 60);//トータル秒数
+    var min = '0' + Math.floor(target.currentTime / 60);// 分数
+    var sec = '0' + Math.floor(target.currentTime % 60);// 秒数
+    min = min.substr(min.length-2, 2);
+    sec = sec.substr(sec.length-2, 2);
+
+    if(target.duration == Infinity){//トータル時間、現在時間表示
+      $currentText.children(".a_now").text(min + " : " + sec);
+      $currentText.children(".a_total").css("display","none");
+    }else{
+      $currentText.children(".a_now").text(min + " : " + sec + " / " + tmin + " : " + tsec);
+      $currentText.children(".a_total").css("display","inline-block");
+    }
+  }
+}
+
+</script>
+</body>
+</html>

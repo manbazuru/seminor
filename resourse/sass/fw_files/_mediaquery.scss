@@ -1,0 +1,29 @@
+$widthXL  : 1180px; //PC大
+$widthLG  : 980px; //PC小
+$widthTab : 768px; //タブレット
+$widthSp  : 568px; //スマートフォン
+
+@mixin lg {
+  //$widthXL（1180px）以上の場合
+  @media (min-width: $widthXL) {
+    @content;
+  }
+}
+@mixin md {
+  //$widthLG（980px）〜$widthXL-1（1179px）の場合
+  @media (min-width: $widthLG) and (max-width: ($widthXL - 1)) {
+    @content;
+  }
+}
+@mixin tab {
+  //$widthTab（768px）〜$widthLG-1（979px）の場合
+  @media (min-width: $widthTab) and (max-width: ($widthLG - 1)) {
+    @content;
+  }
+}
+@mixin sp {
+  //$widthTab-1（767px）以下の場合
+  @media (max-width: ($widthTab - 1)) {
+    @content;
+  }
+}
